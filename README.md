@@ -81,6 +81,7 @@ Para este programa se decidió establecer dos excepciones. En primer lugar se le
 
 ## 3. Números Primos
 ``` python
+
 while True: 
     try:
         numero_ingresado=int(input("Número: ")) 
@@ -96,6 +97,56 @@ while True:
     except ValueError as error: 
         print("Error:", error)
 ```
+Para este programa, en primer lugar se levantó una excepción para verificar el ingreso de los datos por parte del usuario. Debido a que para realizar el control del ingreso de datos se decidió romper la ejecución de la función cuando el programa reciba un 0 y los números ingresados deben ser positivos, es necesario levantar una excepción en caso de que el usuario ingrese valores negativos. 
 
+``` python
+def lista_de_primos(numeros):
+  primos = [] 
+  for num in numeros:
+    try:
+        if detecta_primos(num): 
+            primos.append(num)  
+    
+    except TypeError:
+        print("Error: al verificar si el número es primo")
+      
+  return primos
+```
+Luego, para la verificación del correcto funcionamiento de la función que detecta números primos dentro de la función que los agrega a la lista, se levanta una excepción en caso de que la ejecución de la función detecta_primos sea errónea. 
 
+## 4. Suma mayor consecutiva
 
+``` python
+while True: 
+    try:
+        numero_ingresado=int(input("Número: "))              
+        if numero_ingresado == 0: 
+            break
+        lista_de_numeros.append(numero_ingresado)  
+    
+    except ValueError:
+        print("Error: por favor ingrese un número válido")
+```
+Para este programa se levantaron tres excepciones. La primera de ellas al momento de realizar la toma de los datos ingresados por parte del usuario. En caso de que no sean valores adecuados para el registro, se levanta un ValueError
+
+``` python
+def suma_mayor_consecutiva (lista_de_numeros):
+    
+    mayor = 0 
+    
+    try:
+        for i in range(len(lista_de_numeros)-1):  
+            suma = lista_de_numeros[i] + lista_de_numeros[i+1] 
+            if suma > mayor: 
+                mayor = suma
+    
+    except TypeError:
+        print("Error: vuelve a verificar que los números ingresados sean enteros")
+    except IndexError:
+        print("Error: no se accedió a un índice válido")
+        
+    return mayor
+```
+Posteriormente dentro de la ejecución de la función principal suma_mayor_consecutiva, se realiza la verificación de los datos inicialmente, y se levanta una excepción para realizar la comprobación de los datos ingresados en caso de poseer algún tipo de error. Esta excepción también ayuda a realizar el control de datos que quizá se hayan podido filtrar de la primera excepción. Por último, en caso de presentar algún inconveniente al momento de realizar el acceso a los índices de la lista que contiene a los números, se levanta un IndexError para realizar la verificación adecuada de la lista creada a partir de los datos ingresados. 
+
+## 5. Anagrama 
