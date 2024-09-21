@@ -1,5 +1,9 @@
 # Reto_06-POO
 
+## RETO 6.1:
+
+En este ejercicio se enseñaran las diferentes excepciones que se añadieron a los programas pertenecientes al reto 01. Se mostrarán pedazos de los códigos que contengan las excepciones añadidas, y se dará una muy breve explicación en cada caso. 
+
 ## 1. Operaciones
 Para este programa se añadieron 4 excepciones. 
 ```python
@@ -147,6 +151,40 @@ def suma_mayor_consecutiva (lista_de_numeros):
         
     return mayor
 ```
-Posteriormente dentro de la ejecución de la función principal suma_mayor_consecutiva, se realiza la verificación de los datos inicialmente, y se levanta una excepción para realizar la comprobación de los datos ingresados en caso de poseer algún tipo de error. Esta excepción también ayuda a realizar el control de datos que quizá se hayan podido filtrar de la primera excepción. Por último, en caso de presentar algún inconveniente al momento de realizar el acceso a los índices de la lista que contiene a los números, se levanta un IndexError para realizar la verificación adecuada de la lista creada a partir de los datos ingresados. 
+Posteriormente dentro de la ejecución de la función principal suma_mayor_consecutiva, se realiza la verificación de los datos inicialmente, y se levanta una excepción para realizar la comprobación de los datos ingresados en caso de poseer algún tipo de error. 
+Esta excepción también ayuda a realizar el control de datos que quizá se hayan podido filtrar de la primera excepción. Por último, en caso de presentar algún inconveniente al momento de realizar el acceso a los índices de la lista que contiene a los números, se levanta un IndexError para realizar la verificación adecuada de la lista creada a partir de los datos ingresados. 
 
 ## 5. Anagrama 
+
+``` python
+def encuentra_anagramas(lista_palabras):
+    diccionario_anagramas = {} 
+    for palabra in lista_palabras:  
+        try:
+            if not isinstance(palabra, str):
+                raise ValueError("Por favor ingrese palabras válidas")
+            palabras_ordenadas = tuple(sorted(palabra)) 
+            if palabras_ordenadas in diccionario_anagramas: 
+                diccionario_anagramas[palabras_ordenadas].append(palabra) 
+            else:
+                diccionario_anagramas[palabras_ordenadas] = [palabra] 
+        
+        except ValueError as error:
+            print("Error:", error)
+```
+``` python
+try:    
+    lista_palabras = input("Ingrese las palabras separadas por espacios: ").split()
+    if not lista_palabras:
+        raise ValueError("La lista no puede estar vacía")
+    print("Los anagramas de la lista ingresada son: ", encuentra_anagramas(lista_palabras))  
+
+except ValueError as error:
+    print("Error:", error)
+```
+
+Para este útlimo programa se añadieron dos excepciones de tipo ValueError. La primera de ellas (dentro de la función encuentra_anagramas), se encarga de controlar el ingreso de los datos por parte del usuario. En caso de ingresar datos que no sean cadenas de texto, se levanta la exepción. Posterior a esto, nuevamente se hace una verificación en caso de que la función falle por el tipo de dato ingresado. Por último, dentro de la ejecución del programa, se levanta una excepción en caso de que el usuario no digite ninguna palabra, es decir, en caso de que el programa reciba una lista vacía. 
+
+## RETO 6.2:
+
+En ese ejercicio se enseñará la adición de casos de excepciones para el programa Shape.
